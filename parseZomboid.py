@@ -13,7 +13,7 @@ def parseJson(file):
         print(f"Error: An unexpected error occurred: {str(e)}")
 
 if __name__ == "__main__":
-    f = 'zomboid.json'
+    f = 'zomboid.json.bak'
     response = parseJson(f)['response']
     workshop_items= response['collectiondetails'][0]['children']
     workshop_id_list = "WorkshopItems="
@@ -21,7 +21,13 @@ if __name__ == "__main__":
 
     for mod in workshop_items:
         count+=1
-        workshop_id_list = workshop_id_list + mod['publishedfileid'] + ";"
+        workshop_id_list = workshop_id_list + mod['publishedfileid'] + ";\n"
+
+
+with open('modlist.txt', 'w') as f:
+    f.write(workshop_id_list)
+
+f.close()
 
 print("mod count is: " + str(count))
 print(workshop_id_list[:-1])
