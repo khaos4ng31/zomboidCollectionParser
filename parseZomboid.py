@@ -17,8 +17,11 @@ if __name__ == "__main__":
     response = parseJson(f)['response']
     workshop_items= response['collectiondetails'][0]['children']
     workshop_id_list = "WorkshopItems="
+    count = 0
 
     for mod in workshop_items:
+        count+=1
         workshop_id_list = workshop_id_list + mod['publishedfileid'] + ";"
 
+print("mod count is: " + str(count))
 print(workshop_id_list[:-1])
